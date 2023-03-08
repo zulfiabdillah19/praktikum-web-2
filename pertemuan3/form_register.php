@@ -1,3 +1,16 @@
+<?php 
+$majors = ['Sistem Informasi', 'Teknik Informatika', 'Bisnis Digital'];
+$skills = [
+    'HTML' => 10,
+    'CSS' => 10,
+    'JavaScript' => 20,
+    'RWD Bootstrap' => 20,
+    'PHP' => 30,
+    'Python' =>30,
+    'Java' => 50,
+];
+$domisilis = ['Jakarta', 'Depok', 'Bogor', 'Tangerang', 'Bekasi', 'Lainnya'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,16 +19,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Register</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <div>
+    <div class="container">
         <h2>
             Form Registrasi IT Club
         </h2>
         <hr>
 
-<form>
+<form method="POST" action="proses_register.php">
   <div class="form-group row">
     <label class="col-4 col-form-label" for="nim">NIM</label> 
     <div class="col-8">
@@ -42,27 +54,33 @@
     </div>
   </div>
   <div class="form-group row">
-    <label for="matkul" class="col-4 col-form-label">Mata Kuliah</label> 
+    <label for="matkul" class="col-4 col-form-label">Program Studi</label> 
     <div class="col-8">
-      <select id="matkul" name="matkul" class="custom-select">
-        <option value="rabbit">Rabbit</option>
+      <select id="matkul" name="prodi" class="custom-select">
+        <?php foreach($majors as $major): ?>
+            <option value="<?php echo $major ?>"><?php echo $major ?></option>
+            <?php endforeach ?>
       </select>
     </div>
   </div>
   <div class="form-group row">
     <label class="col-4">Skill Programming</label> 
     <div class="col-8">
+        <?php foreach($skills as $key => $value): ?>
       <div class="custom-control custom-checkbox custom-control-inline">
-        <input name="skil" id="skil_0" type="checkbox" checked="checked" class="custom-control-input" value="rabbit"> 
-        <label for="skil_0" class="custom-control-label">Rabbit</label>
+        <input name="skil[]" id="<?php echo $key ?>" type="checkbox" class="custom-control-input" value="<?php echo $key ?>"> 
+        <label for="<?php echo $key ?>" class="custom-control-label"><?php echo $key ?></label>
       </div>
+      <?php endforeach ?>
     </div>
   </div>
   <div class="form-group row">
     <label for="domisili" class="col-4 col-form-label">Tempat Domisili</label> 
     <div class="col-8">
       <select id="domisili" name="domisili" class="custom-select">
-        <option value="rabbit">Rabbit</option>
+        <?php foreach ($domisilis as $domisili) : ?>
+        <option value="<?= $domisili ?>"><?= $domisili ?></option>
+        <?php endforeach ?>
       </select>
     </div>
   </div>
