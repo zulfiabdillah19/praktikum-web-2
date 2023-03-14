@@ -7,7 +7,7 @@ $skill = $_POST['skil'];
 $domisili = $_POST['domisili'];
 $email = $_POST['email'];
 
-function skor_skill($skills)
+function skor_skill($skill)
 {
     $skill_list = [
         'HTML' => 10,
@@ -19,18 +19,44 @@ function skor_skill($skills)
         'Java' => 50,
     ];
     $result = 0; 
-    foreach ($skills as $skill) {
+    foreach ($skill as $skill) {
         $result = $result + $skill_list[$skill];
     }
 
     return $result;
 }
 
-// Tugas saya
-function kategori_skill($skor)
+function kategori_skill($skill)
 {
-    // return string kategori
+    $skill_list = [
+        'HTML' => 10,
+        'CSS' => 10,
+        'Java script' => 20,
+        'RWD Bootsrap' => 20,
+        'PHP' => 20,
+        'Python' => 30,
+        'Java' => 50,
+    ];
+    $result = 0; 
+    foreach ($skill as $skill) {
+        $result = $result + $skill_list[$skill];
+    }
+
+    
+        if ($result >= 100 ) {
+            $result = "Sangat Baik";
+        } elseif ($result >= 60) {
+            $result = "Baik";
+        } elseif ($result >= 40) {
+            $result = "Cukup";
+        } elseif ($result >= 0) {
+            $result = "Kurang";
+        } else {
+            $result = "Tidak Memandai";
+        }
+    return $result;
 }
+
 
 echo "NIM: $nim";
 echo "<br> Nama: $nama";
@@ -40,5 +66,11 @@ echo "<br> Skill Programming: ";
 foreach ($skill as $skil) {
     echo $skil . ", ";
 }
+echo "<br>Skor Skill : " . skor_skill($skill);
+echo "<br>Kategori Skill: " . kategori_skill($skill);
 echo "<br> Tempat Domisili: $domisili";
 echo "<br> Email: $email";
+
+
+
+?>
